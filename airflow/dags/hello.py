@@ -4,7 +4,7 @@ from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
 with DAG(
-    dag_id="tembi-data-pipeline", 
+    dag_id="tembi-data-pipeline-maram", 
     start_date=airflow.utils.dates.days_ago(14), 
     schedule_interval="@daily"
     ) as dag:
