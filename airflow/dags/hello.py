@@ -16,4 +16,4 @@ with DAG(dag_id="tembi-data-pipeline", start_date=datetime(2024, 8, 8), schedule
         print("load to data warehouse")
 
     # Set dependencies between tasks
-    collect >> transform >> load_to_data_warehouse()
+    collect >> transform >> load_to_data_warehouse
