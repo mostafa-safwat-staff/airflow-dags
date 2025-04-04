@@ -1,4 +1,4 @@
-from airflow
+import airflow
 from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
