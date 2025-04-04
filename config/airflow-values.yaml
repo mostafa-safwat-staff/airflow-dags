@@ -10,5 +10,5 @@ dags:
     rev: HEAD
     depth: 1
     maxFailures: 3
-    subPath: "airflow/dags"
+    subPath: "dags"
     credentialsSecret: git-credentials
