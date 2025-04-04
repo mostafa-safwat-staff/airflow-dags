@@ -1,0 +1,14 @@
+images:
+  airflow:
+    repository: msafwat/airflow-custom
+    tag: latest
+dags:
+  gitSync:
+    enabled: true
+    repo: https://github.com/mostafa-safwat-staff/airflow-dags.git
+    branch: main
+    rev: HEAD
+    depth: 1
+    maxFailures: 3
+    subPath: "airflow/dags"
+    credentialsSecret: git-credentials
