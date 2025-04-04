@@ -7,10 +7,10 @@ with DAG(dag_id="tembi-data-pipeline", start_date=datetime(2024, 8, 8), schedule
     # Tasks are represented as operators
     collect = BashOperator(task_id="collect-data", bash_command="echo hello")
 
-    # @task()
-    # def transform():
-    #     print("transform")
+    @task()
+    def transforms():
+        print("transform")
 
 
     # # Set dependencies between tasks
-    # collect >> transform
+    collect >> transforms
