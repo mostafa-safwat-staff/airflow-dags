@@ -9,5 +9,7 @@ with DAG(dag_id="tembi-data-pipeline", start_date=airflow.utils.dates.days_ago(1
 
     transform = BashOperator(task_id="transform-data", bash_command="echo transform")
 
+    load = BashOperator(task_id="load-data", bash_command="echo load")
+
     # Set dependencies between tasks
-    collect >> transform
+    collect >> transform >> load
