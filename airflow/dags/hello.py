@@ -3,13 +3,17 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 
-with DAG(dag_id="medium_blog_dag", start_date=datetime(2024, 8, 8), schedule="0 0 * * *") as dag:
+with DAG(dag_id="tembi-data-pipeline", start_date=datetime(2024, 8, 8), schedule="0 0 * * *") as dag:
     # Tasks are represented as operators
-    hello = BashOperator(task_id="hello", bash_command="echo hello")
+    collect = BashOperator(task_id="Collect Data", bash_command="echo hello")
 
     @task()
-    def airflow():
-        print("airflow")
+    def transform():
+        print("transform")
+
+    @task()
+    def load_to_data_warehouse():
+        print("load to data warehouse")
 
     # Set dependencies between tasks
-    hello >> airflow()
+    collect >> transform >> load_to_data_warehouse()
