@@ -1,36 +1,15 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.decorators import task
+from airflow.operators.bash import BashOperator
 
+with DAG(dag_id="medium_blog_dag", start_date=datetime(2024, 8, 8), schedule="0 0 * * *") as dag:
+    # Tasks are represented as operators
+    hello = BashOperator(task_id="hello", bash_command="echo hello")
 
-def print_hello():
-    return "Hello from Airflow!"
+    @task()
+    def airflow():
+        print("airflow")
 
-
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
-}
-
-dag = DAG(
-    'simple_hello_world',
-    default_args=default_args,
-    description='A simple Hello World DAG',
-    schedule_interval=timedelta(days=1),
-    start_date=datetime(2023, 1, 1),
-    catchup=False,
-    tags=['example', 'hello-world'],
-)
-
-hello_task = PythonOperator(
-    task_id='print_hello',
-    python_callable=print_hello,
-    dag=dag,
-)
-
-# Task dependencies (not needed for a single task, but shown for reference)
-# hello_task >> next_task  # If you had additional tasks
+    # Set dependencies between tasks
+    hello >> airflow()
