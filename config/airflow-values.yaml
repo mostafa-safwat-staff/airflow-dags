@@ -75,3 +75,13 @@ redis:
 #     requests:
 #       cpu: 100m
 #       memory: 128Mi
+
+# Add StatsD exporter configuration
+statsdExporter:
+  enabled: true
+  # Configure how the StatsD exporter should expose metrics for Prometheus
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "9102"
+      prometheus.io/path: "/metrics"
