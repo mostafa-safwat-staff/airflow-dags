@@ -1,7 +1,10 @@
+# Custom Airflow image
 images:
   airflow:
     repository: msafwat/airflow-custom
     tag: latest
+
+# DAGs configuration with Git-sync
 dags:
   gitSync:
     enabled: true
@@ -12,3 +15,52 @@ dags:
     maxFailures: 3
     subPath: "dags"
     credentialsSecret: git-credentials
+
+# Executor configuration
+executor: KubernetesExecutor
+
+# For KubernetesExecutor, use this approach
+workers:
+  persistence:
+    enabled: false
+
+# Set celery to empty configuration since we're not using it
+celery: {}
+
+# Disable Redis since it's not needed with KubernetesExecutor
+redis:
+  enabled: false
+
+# # Webserver configuration
+# webserver:
+#   resources:
+#     limits:
+#       cpu: "1"
+#       memory: "1Gi"
+#     requests:
+#       cpu: "500m"
+#       memory: "500Mi"
+
+# # Scheduler configuration
+# scheduler:
+#   resources:
+#     limits:
+#       cpu: "1"
+#       memory: "1Gi"
+#     requests:
+#       cpu: "500m"
+#       memory: "500Mi"
+
+# # Kubernetes-specific settings
+# config:
+#   kubernetes:
+#     worker_pods_creation_batch_size: "16"
+#     worker_pods_termination_grace_period: "60"
+#     delete_worker_pods: "True"
+#     namespace: "airflow"
+
+# # Persistent storage for logs
+# logs:
+#   persistence:
+#     enabled: true
+#     size: 5Gi
