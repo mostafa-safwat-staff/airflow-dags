@@ -64,3 +64,14 @@ redis:
 #   persistence:
 #     enabled: true
 #     size: 5Gi
+
+# statsd:
+#   enabled: true  # Set to false if you don't want it
+#   ## Configure resource requests and limits
+#   resources:
+#     limits:
+#       cpu: 100m
+#       memory: 128Mi
+#     requests:
+#       cpu: 100m
+#       memory: 128Mi
