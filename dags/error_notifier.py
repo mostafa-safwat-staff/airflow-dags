@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.operators.python import BashOperator
+from airflow.operators.bash_operator import BashOperator
 import airflow.utils.dates
 
 def send_error():
