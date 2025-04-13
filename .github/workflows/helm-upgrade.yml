@@ -1,0 +1,26 @@
+name: Helm Upgrade on Push to Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  helm-upgrade:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+    #   - name: Set up Kubernetes credentials
+    #     # Assumes you're using a Kubeconfig secret stored in GitHub Actions
+    #     run: |
+    #       mkdir -p ~/.kube
+    #       echo "${{ secrets.KUBECONFIG }}" > ~/.kube/config
+
+    #   - name: Install Helm
+    #     uses: azure/setup-helm@v3
+
+    #   - name: Run Helm upgrade (via Makefile)
+    #     run: make upgrade
