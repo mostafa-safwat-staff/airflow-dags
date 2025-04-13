@@ -95,7 +95,7 @@ env:
   - name: "AIRFLOW__SMTP__SMTP_STARTTLS"
     value: "True"
   - name: "AIRFLOW__SMTP__SMTP_SSL"
-    value: "False"
+    value: "True"
   - name: "AIRFLOW__SMTP__SMTP_USER"
     value: "mostafa.safwat.staff@gmail.com"
   - name: "AIRFLOW__SMTP__SMTP_PORT"
