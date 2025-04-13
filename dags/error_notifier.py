@@ -9,7 +9,7 @@ dag = DAG (
     dag_id = "error_notifier",
     schedule_interval=None, 
     start_date=airflow.utils.dates.days_ago(3),
-    default_args={"on_failure_callback": send_error, "email": "mostafa.safwat.1@gmail.com"},
+    default_args={"on_failure_callback": send_error, "email": "mostafa.safwat.staff@gmail.com"},
     on_failure_callback=send_error
 )
 

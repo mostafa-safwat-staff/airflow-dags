@@ -33,6 +33,7 @@ redis:
 
 # # Webserver configuration
 # webserver:
+#     expose_config: true
 #   resources:
 #     limits:
 #       cpu: "1"
@@ -86,3 +87,27 @@ statsdExporter:
       prometheus.io/port: "9102"
       prometheus.io/path: "/metrics"
 
+env:
+  - name: "AIRFLOW__WEBSERVER__EXPOSE_CONFIG"
+    value: "True"
+  - name: "AIRFLOW__SMTP__SMTP_HOST"
+    value: "smtp.gmail.com"
+  - name: "AIRFLOW__SMTP__SMTP_STARTTLS"
+    value: "True"
+  - name: "AIRFLOW__SMTP__SMTP_SSL"
+    value: "False"
+  - name: "AIRFLOW__SMTP__SMTP_USER"
+    value: "mostafa.safwat.staff@gmail.com"
+  - name: "AIRFLOW__SMTP__SMTP_PORT"
+    value: "587"
+  - name: "AIRFLOW__SMTP__SMTP_MAIL_FROM"
+    value: "mostafa.safwat.staff@gmail.com"
+
+secret:
+  - envName: "AIRFLOW__SMTP__SMTP_PASSWORD"
+    secretName: "airflow-smtp-secrets"
+    secretKey: "smtp_password"
+
+# kubectl create secret generic airflow-smtp-secrets \
+#   --from-literal=smtp_password="A*R**_13" \
+#   -n airflow
