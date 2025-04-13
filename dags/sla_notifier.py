@@ -6,7 +6,7 @@ def send_error():
     print("ERROR!")
 
 dag = DAG (
-    dag_id = "error_notifier",
+    dag_id = "sla_notifier",
     schedule_interval=None, 
     start_date=airflow.utils.dates.days_ago(3),
     default_args={
@@ -18,8 +18,9 @@ dag = DAG (
     on_failure_callback=send_error
 )
 
-failing_task = BashOperator(
-    task_id="failing_task",
-    bash_command="exit 1",
+sleeptask = BashOperator(
+    task_id="sleeptask",
+    bash_command="sleep 65",
+    sla=datetime.timedelta(minutes=1),
     dag=dag,
 )

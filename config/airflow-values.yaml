@@ -93,13 +93,13 @@ env:
   - name: "AIRFLOW__SMTP__SMTP_HOST"
     value: "smtp.gmail.com"
   - name: "AIRFLOW__SMTP__SMTP_STARTTLS"
-    value: "True"
+    value: "False"
   - name: "AIRFLOW__SMTP__SMTP_SSL"
     value: "True"
   - name: "AIRFLOW__SMTP__SMTP_USER"
     value: "mostafa.safwat.staff@gmail.com"
   - name: "AIRFLOW__SMTP__SMTP_PORT"
-    value: "587"
+    value: "465"
   - name: "AIRFLOW__SMTP__SMTP_MAIL_FROM"
     value: "mostafa.safwat.staff@gmail.com"
 
@@ -109,5 +109,5 @@ secret:
     secretKey: "smtp_password"
 
 # kubectl create secret generic airflow-smtp-secrets \
-#   --from-literal=smtp_password="A*R**_13" \
-#   -n airflow
+#   --from-literal=smtp_password="..." \ # Gmail App Passwords
+#    -n airflow
