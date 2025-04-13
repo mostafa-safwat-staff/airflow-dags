@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
 import airflow.utils.dates
+import datetime
 
 def send_error():
     print("ERROR!")
