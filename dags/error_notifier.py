@@ -7,7 +7,7 @@ def send_error():
     print("ERROR!")
 
 
-dag = DAG(
+with DAG(
     dag_id="error_notifier",
     schedule_interval=None,
     start_date=airflow.utils.dates.days_ago(3),
@@ -18,11 +18,9 @@ dag = DAG(
         "email_on_retry": False,
     },
     on_failure_callback=send_error,
-)
-
-
-failing_task = BashOperator(
-    task_id="failing_task",
-    bash_command="exit 1",
-    dag=dag,
-)
+) as dag:
+    failing_task = BashOperator(
+        task_id="failing_task",
+        bash_command="exit 1",
+        dag=dag,
+    )

@@ -21,7 +21,7 @@ def sla_miss_callback(
     )
 
 
-dag = DAG(
+with DAG(
     dag_id="sla_notifier",
     default_args={"email": "mostafa.safwat.staff@gmail.com"},
     sla_miss_callback=sla_miss_callback,
@@ -30,11 +30,10 @@ dag = DAG(
     schedule_interval=None,
     start_date=datetime.datetime(2025, 1, 1, 12),
     end_date=datetime.datetime(2026, 1, 1, 15),
-)
-
-sleeptask = BashOperator(
-    task_id="sleeptask",
-    bash_command="sleep 65",
-    sla=datetime.timedelta(minutes=1),
-    dag=dag,
-)
+) as dag:
+    sleeptask = BashOperator(
+        task_id="sleeptask",
+        bash_command="sleep 65",
+        sla=datetime.timedelta(minutes=1),
+        dag=dag,
+    )
