@@ -22,7 +22,7 @@ jobs:
         run: pip install -r dags/requirements.txt
 
       - name: Check code quality
-        run: make lint || true
+        run: make lint
 
     #   - name: Set up Kubernetes credentials
     #     # Assumes you're using a Kubeconfig secret stored in GitHub Actions

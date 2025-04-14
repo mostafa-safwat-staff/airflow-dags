@@ -1,10 +1,12 @@
 from airflow import DAG
 from airflow.operators.bash_operator import BashOperator
-import airflow.utils.dates
+# import airflow.utils.dates
 from airflow.utils.email import send_email
 import datetime
 
-def sla_miss_callback(dag, task_list, blocking_task_list, slas, blocking_tis, *args, **kwargs):
+
+def sla_miss_callback(dag, task_list, blocking_task_list,
+                      slas, blocking_tis, *args, **kwargs):
     send_email(
         to=["mostafa.safwat.staff@gmail.com"],
         subject="[Airflow SLA Miss] Task missed its SLA",
@@ -17,14 +19,15 @@ def sla_miss_callback(dag, task_list, blocking_task_list, slas, blocking_tis, *a
     )
 
 
-dag = DAG (
-    dag_id = "sla_notifier",
+dag = DAG(
+    dag_id="sla_notifier",
     default_args={
-        "email": "mostafa.safwat.staff@gmail.com" 
+        "email": "mostafa.safwat.staff@gmail.com"
     },
     sla_miss_callback=sla_miss_callback,
-    # schedule_interval=datetime.timedelta(minutes=3),  # Have to be enabled to make it works
-    schedule_interval=None, 
+    # Have to be enabled to make it works
+    # schedule_interval=datetime.timedelta(minutes=3),
+    schedule_interval=None,
     start_date=datetime.datetime(2025, 1, 1, 12),
     end_date=datetime.datetime(2026, 1, 1, 15),
 )
