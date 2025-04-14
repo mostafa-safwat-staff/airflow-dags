@@ -3,3 +3,4 @@ apache-airflow-providers-amazon==9.4.0
 sagemaker==2.243.0
 psycopg2-binary
 apache-airflow[statsd]
+flake8==7.2.0

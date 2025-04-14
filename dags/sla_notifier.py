@@ -23,7 +23,7 @@ dag = DAG (
         "email": "mostafa.safwat.staff@gmail.com" 
     },
     sla_miss_callback=sla_miss_callback,
-    # schedule_interval=datetime.timedelta(minutes=3),
+    # schedule_interval=datetime.timedelta(minutes=3),  # Have to be enabled to make it works
     schedule_interval=None, 
     start_date=datetime.datetime(2025, 1, 1, 12),
     end_date=datetime.datetime(2026, 1, 1, 15),
