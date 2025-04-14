@@ -17,7 +17,7 @@ dag = DAG(
         "email_on_failure": True,
         "email_on_retry": False,
     },
-    on_failure_callback=send_error
+    on_failure_callback=send_error,
 )
 
 

@@ -4,3 +4,4 @@ sagemaker==2.243.0
 psycopg2-binary
 apache-airflow[statsd]
 flake8==7.2.0
+black==25.1.0

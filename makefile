@@ -21,6 +21,7 @@ help:
 	@echo "  push-image    - Push custom Airflow Docker image"
 	@echo "  logs          - Show logs for Airflow components"
 	@echo "  lint		   - Check code quality"
+	@echo "  format		   - Format code"
 	@echo ""
 	@echo "Environment variables:"
 	@echo "  NAMESPACE     - Kubernetes namespace (default: $(NAMESPACE))"
@@ -94,6 +95,12 @@ push-image:
 logs:
 	@echo "Showing logs for Airflow scheduler..."
 	kubectl logs -l component=scheduler -n $(NAMESPACE) --tail=100 -f
+
+# Format code
+.PHONY: format
+format:
+	@echo "Formatting code..."
+	python -m black dags/*.py
 
 # Check code quality
 .PHONY: lint

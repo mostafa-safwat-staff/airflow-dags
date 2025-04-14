@@ -6,12 +6,12 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.amazon.aws.operators.s3 import S3CopyObjectOperator
+
 # from airflow.providers.amazon.aws.operators.sagemaker
 # import SageMakerEndpointOperator
 # from airflow.providers.amazon.aws.operators.sagemaker
 # import SageMakerTrainingOperator
 from sagemaker.amazon.common import write_numpy_to_dense_tensor
-
 
 dag = DAG(
     dag_id="chapter7_aws_handwritten_digits_classifier",
@@ -37,8 +37,8 @@ def _extract_mnist_data():
     # Download S3 dataset into memory
     mnist_buffer = io.BytesIO()
     mnist_obj = s3hook.get_key(
-       bucket_name="sagemaker-mnist-test-data2",
-       key="mnist.pkl.gz",
+        bucket_name="sagemaker-mnist-test-data2",
+        key="mnist.pkl.gz",
     )
     mnist_obj.download_fileobj(mnist_buffer)
 
