@@ -99,4 +99,4 @@ logs:
 .PHONY: lint
 lint:
 	@echo "Checking code quality..."
-	python -m flake8 dags/*.py
+	python -m flake8 dags/*.py || { echo "❌ Lint errors found! See output above."; exit 1; }
