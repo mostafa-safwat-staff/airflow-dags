@@ -13,7 +13,12 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install dependencies 
+      - name: Install system dependencies for xmlsec
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libxml2-dev libxmlsec1-dev pkg-config
+
+      - name: Install Dependencies 
         run: pip install -r dags/requirements.txt
 
       - name: Check code quality
