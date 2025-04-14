@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Check code quality
+        run: make lint
+
     #   - name: Set up Kubernetes credentials
     #     # Assumes you're using a Kubeconfig secret stored in GitHub Actions
     #     run: |

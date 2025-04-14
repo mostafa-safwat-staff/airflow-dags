@@ -20,6 +20,7 @@ help:
 	@echo "  airflow-ui  	- Set up port forwarding to access Airflow UI"
 	@echo "  push-image    - Push custom Airflow Docker image"
 	@echo "  logs          - Show logs for Airflow components"
+	@echo "  lint		   - Check code quality"
 	@echo ""
 	@echo "Environment variables:"
 	@echo "  NAMESPACE     - Kubernetes namespace (default: $(NAMESPACE))"
@@ -93,3 +94,9 @@ push-image:
 logs:
 	@echo "Showing logs for Airflow scheduler..."
 	kubectl logs -l component=scheduler -n $(NAMESPACE) --tail=100 -f
+
+# Check code quality
+.PHONY: lint
+lint:
+	@echo "Checking code quality..."
+	python -m flake8 dags/*.py
