@@ -22,6 +22,7 @@ help:
 	@echo "  logs          - Show logs for Airflow components"
 	@echo "  lint		   - Check code quality"
 	@echo "  format		   - Format code"
+	@echo "  test		   - Test DAGs"
 	@echo ""
 	@echo "Environment variables:"
 	@echo "  NAMESPACE     - Kubernetes namespace (default: $(NAMESPACE))"
@@ -107,3 +108,9 @@ format:
 lint:
 	@echo "Checking code quality..."
 	python -m flake8 dags/*.py
+
+# Test all DAGs
+.PHONY: test
+test:
+	@echo "Testing all DAGs..."
+	python -m pytest tests
