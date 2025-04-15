@@ -1,7 +1,7 @@
-apache-airflow-providers-postgres
-apache-airflow-providers-amazon
-sagemaker==2.243.0
-psycopg2-binary
+apache-airflow-providers-postgres==6.1.2
+apache-airflow-providers-amazon==9.5.0
+sagemaker==2.243.1
+psycopg2-binary==2.9.10
 apache-airflow[statsd]
 flake8==7.2.0
 black==25.1.0
