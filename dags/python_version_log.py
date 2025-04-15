@@ -11,7 +11,7 @@ def log_python_version():
 with DAG(
     "check_python_version",
     start_date=datetime(2024, 1, 1),
-    schedule_interval=None,
+    schedule=None,
     catchup=False,
 ) as dag:
 

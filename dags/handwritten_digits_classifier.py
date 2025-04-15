@@ -15,7 +15,7 @@ from sagemaker.amazon.common import write_numpy_to_dense_tensor
 
 with DAG(
     dag_id="chapter7_aws_handwritten_digits_classifier",
-    schedule_interval=None,
+    schedule=None,
     start_date=airflow.utils.dates.days_ago(3),
 ) as dag:
     download_mnist_data = S3CopyObjectOperator(

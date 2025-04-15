@@ -9,7 +9,7 @@ def send_error():
 
 with DAG(
     dag_id="error_notifier",
-    schedule_interval=None,
+    schedule=None,
     start_date=airflow.utils.dates.days_ago(3),
     default_args={
         "on_failure_callback": send_error,
