@@ -1,11 +1,11 @@
 import gzip
 import io
 import pickle
-import airflow.utils.dates
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.amazon.aws.operators.s3 import S3CopyObjectOperator
+import pendulum
 
 # from airflow.providers.amazon.aws.operators.sagemaker
 # import SageMakerEndpointOperator
@@ -16,7 +16,7 @@ from sagemaker.amazon.common import write_numpy_to_dense_tensor
 with DAG(
     dag_id="chapter7_aws_handwritten_digits_classifier",
     schedule=None,
-    start_date=airflow.utils.dates.days_ago(3),
+    start_date=pendulum.today('UTC').add(days=-3),
 ) as dag:
     download_mnist_data = S3CopyObjectOperator(
         task_id="download_mnist_data",

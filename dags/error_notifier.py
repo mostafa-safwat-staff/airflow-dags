@@ -1,6 +1,6 @@
 from airflow import DAG
-from airflow.operators.bash_operator import BashOperator
-import airflow.utils.dates
+from airflow.operators.bash import BashOperator
+import pendulum
 
 
 def send_error():
@@ -10,7 +10,7 @@ def send_error():
 with DAG(
     dag_id="error_notifier",
     schedule=None,
-    start_date=airflow.utils.dates.days_ago(3),
+    start_date=pendulum.today('UTC').add(days=-3),
     default_args={
         "on_failure_callback": send_error,
         "email": "mostafa.safwat.staff@gmail.com",
