@@ -10,7 +10,7 @@ def send_error():
 with DAG(
     dag_id="error_notifier",
     schedule=None,
-    start_date=pendulum.today('UTC').add(days=-3),
+    start_date=pendulum.today("UTC").add(days=-3),
     default_args={
         "on_failure_callback": send_error,
         "email": "mostafa.safwat.staff@gmail.com",
