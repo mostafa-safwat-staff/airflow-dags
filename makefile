@@ -109,8 +109,8 @@ lint:
 	@echo "Checking code quality..."
 	python -m flake8 dags/*.py
 
-# Test all DAGs
+# Test DAG integrity
 .PHONY: test
 test:
-	@echo "Testing all DAGs..."
+	@echo "Testing DAG integrity..."
 	python -m pytest tests

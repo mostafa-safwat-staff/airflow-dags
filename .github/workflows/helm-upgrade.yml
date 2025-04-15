@@ -25,7 +25,7 @@ jobs:
       - name: Check code quality
         run: make lint
 
-      - name: Test code quality
+      - name: Test DAG integrity
         run: make test
 
     #   - name: Set up Kubernetes credentials
