@@ -6,7 +6,6 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.amazon.aws.operators.s3 import S3CopyObjectOperator
-import datetime
 
 # from airflow.providers.amazon.aws.operators.sagemaker
 # import SageMakerEndpointOperator
@@ -16,8 +15,7 @@ from sagemaker.amazon.common import write_numpy_to_dense_tensor
 
 with DAG(
     dag_id="chapter7_aws_handwritten_digits_classifier",
-    schedule=datetime.timedelta(minutes=10),
-    # schedule=None,
+    schedule=None,
     start_date=airflow.utils.dates.days_ago(3),
 ) as dag:
     download_mnist_data = S3CopyObjectOperator(
