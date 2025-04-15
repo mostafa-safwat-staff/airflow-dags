@@ -10,16 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install system dependencies for xmlsec
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '*'
+
+      - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libxml2-dev libxmlsec1-dev pkg-config
-
-      - name: Install Dependencies 
-        run: pip install -r dags/requirements.txt
+          python -m pip install --upgrade pip
+          python -m pip install --upgrade build twine
+          python -m pip install -r dags/requirements.txt
 
       - name: Check code quality
         run: make lint
