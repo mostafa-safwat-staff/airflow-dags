@@ -25,6 +25,9 @@ jobs:
       - name: Check code quality
         run: make lint
 
+      - name: Test code quality
+        run: make test
+
     #   - name: Set up Kubernetes credentials
     #     # Assumes you're using a Kubeconfig secret stored in GitHub Actions
     #     run: |
