@@ -5,3 +5,4 @@ psycopg2-binary==2.9.10
 apache-airflow[statsd]
 flake8==7.2.0
 black==25.1.0
+pytest==8.3.5
