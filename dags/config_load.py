@@ -3,29 +3,37 @@ import yaml
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 
-dag_file_dir = os.path.dirname(os.path.abspath(__file__))
-config_file = os.path.join(dag_file_dir, 'config', 'dag.prod.yaml')
+
+def load_config():
+    dag_file_dir = os.path.dirname(os.path.abspath(__file__))
+    config_file = os.path.join(dag_file_dir, "config", "dag.prod.yaml")
+
+    with open(config_file, "r") as config_file:
+        config = yaml.safe_load(config_file)
+        return config
 
 
-with open(config_file, 'r') as config_file:
-    config = yaml.safe_load(config_file)
-
-
-def config_load(input_path, output_path):
-    print(">>> config paths: ", input_path, output_path)
+def print_config(**kwargs):
+    ti = kwargs["ti"]  # task instance
+    config = ti.xcom_pull(task_ids="load_config")
+    print(f"Received from XCom: {config}")
 
 
 with DAG(
-    "config_load",
+    "load_config",
     schedule=None,
     catchup=False,
 ) as dag:
 
-    check_version = PythonOperator(
-        task_id="log_python_version",
-        op_kwargs={
-            "input_path": config["input_path"],
-            "output_path": config["output_path"],
-        },
-        python_callable=config_load,
+    load_config_task = PythonOperator(
+        task_id="load_config",
+        python_callable=load_config,
     )
+
+    print_config_task = PythonOperator(
+        task_id="print_config",
+        python_callable=print_config,
+        provide_context=True
+    )
+
+    load_config_task >> print_config_task
