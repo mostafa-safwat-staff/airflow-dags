@@ -102,11 +102,30 @@ env:
     value: "465"
   - name: "AIRFLOW__SMTP__SMTP_MAIL_FROM"
     value: "mostafa.safwat.staff@gmail.com"
+  - name: "AUTH_TYPE"
+    value: "AUTH_LDAP"
+  - name: "AUTH_USER_REGISTRATION"
+    value: "True"
+  - name: "AUTH_USER_REGISTRATION_ROLE"
+    value: "User"
+  - name: "AUTH_LDAP_SERVER"
+    value: "ldap.moustafa-kotb.com"
+  - name: "AUTH_LDAP_USE_TLS"
+    value: "False"
+  - name: "AUTH_LDAP_SEARCH"
+    value: "dc=moustafa-kotb,dc=com"
+  - name: "AUTH_LDAP_BIND_USER"
+    value: "onur@moustafa-kotb.com"
+  - name: "AUTH_LDAP_UID_FIELD"
+    value: "uid"
 
 secret:
   - envName: "AIRFLOW__SMTP__SMTP_PASSWORD"
     secretName: "airflow-smtp-secrets"
     secretKey: "smtp_password"
+  - envName: "AUTH_LDAP_BIND_PASSWORD"
+    secretName: "airflow-ldap-secrets"
+    secretKey: "ldap_password"
 
 # kubectl create secret generic airflow-smtp-secrets \
 #   --from-literal=smtp_password="..." \ # Gmail App Passwords
