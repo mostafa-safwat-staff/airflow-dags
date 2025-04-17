@@ -113,11 +113,11 @@ env:
   - name: "AUTH_LDAP_USE_TLS"
     value: "False"
   - name: "AUTH_LDAP_SEARCH"
-    value: "dc=moustafa-kotb,dc=com"
+    value: "DC=moustafa-kotb,DC=com"
   - name: "AUTH_LDAP_BIND_USER"
-    value: "onur@moustafa-kotb.com"
+    value: "CN=onur,DC=moustafa-kotb,DC=com"
   - name: "AUTH_LDAP_UID_FIELD"
-    value: "uid"
+    value: "CN"
 
 secret:
   - envName: "AIRFLOW__SMTP__SMTP_PASSWORD"
