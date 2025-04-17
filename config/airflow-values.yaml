@@ -107,7 +107,7 @@ env:
   - name: "AUTH_USER_REGISTRATION"
     value: "True"
   - name: "AUTH_USER_REGISTRATION_ROLE"
-    value: "User"
+    value: "Op"
   - name: "AUTH_LDAP_SERVER"
     value: "ldap.moustafa-kotb.com"
   - name: "AUTH_LDAP_USE_TLS"
