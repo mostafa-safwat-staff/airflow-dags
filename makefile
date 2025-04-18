@@ -85,7 +85,7 @@ airflow-ui:
 .PHONY: push-image
 push-image:
 	@echo "Building custom Airflow Docker image..."
-	docker build -t airflow-custom:latest -f docker/Dockerfile .
+	docker build --platform linux/amd64,linux/arm64 -t  airflow-custom:latest -f docker/Dockerfile .
 
 	@echo "Pushing custom Airflow Docker image..."
 	docker tag airflow-custom:latest msafwat/airflow-custom:latest

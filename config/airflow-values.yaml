@@ -3,6 +3,7 @@ images:
   airflow:
     repository: msafwat/airflow-custom
     tag: latest
+    pullPolicy: Always 
 
 # DAGs configuration with Git-sync
 dags:
@@ -109,7 +110,7 @@ env:
   - name: "AUTH_USER_REGISTRATION_ROLE"
     value: "Op"
   - name: "AUTH_LDAP_SERVER"
-    value: "ldap.moustafa-kotb.com"
+    value: "ldap://ldap.moustafa-kotb.com:636"
   - name: "AUTH_LDAP_USE_TLS"
     value: "False"
   - name: "AUTH_LDAP_SEARCH"
