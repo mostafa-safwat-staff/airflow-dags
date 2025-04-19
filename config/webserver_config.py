@@ -94,15 +94,25 @@ AUTH_TYPE = AUTH_LDAP
 # }]
 
 # When using LDAP Auth, setup the ldap server
-AUTH_LDAP_SERVER = "ldap://ldap.moustafa-kotb.com:636"
+AUTH_LDAP_SERVER = "ldaps://ldap.moustafa-kotb.com:636"
 
 AUTH_LDAP_USE_TLS = False
+AUTH_LDAP_ALLOW_SELF_SIGNED = True
 AUTH_LDAP_SEARCH = 'DC=moustafa-kotb,DC=com'
-AUTH_LDAP_BIND_USER = 'CN=onur,DC=moustafa-kotb,DC=com'
-AUTH_LDAP_BIND_PASSWORD = os.environ.get('AUTH_LDAP_BIND_PASSWORD', '')
-AUTH_LDAP_UID_FIELD = 'CN'
+AUTH_LDAP_BIND_USER = 'CN=Airflow LDAP Bind User,OU=AADDC Users,DC=moustafa-kotb,DC=com'
+AUTH_LDAP_BIND_PASSWORD = os.environ.get('AUTH_LDAP_BIND_PASSWORD_SECRET', '')
+AUTH_LDAP_UID_FIELD = 'userPrincipalName'
 
 # Mappings
+AUTH_LDAP_USER_SEARCH_FILTER = '(objectClass=person)'
+AUTH_LDAP_GROUP_SEARCH_FILTER = '(objectClass=group)'
+
+AUTH_ROLES_SYNC_AT_LOGIN = True
+
+AUTH_ROLES_MAPPING = {
+    'CN=Airflow Admins,OU=AADDC Users,DC=moustafa-kotb,DC=com': ['Admin'], ## Group in Azure LDAP
+}
+
 AUTH_USER_REGISTRATION = True
 AUTH_USER_REGISTRATION_ROLE = 'Op'
 
