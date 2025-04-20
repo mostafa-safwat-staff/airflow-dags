@@ -17,7 +17,6 @@ help:
 	@echo "  upgrade       - Upgrade existing Airflow installation"
 	@echo "  uninstall     - Uninstall Airflow"
 	@echo "  deploy        - Install or upgrade Airflow (detects which is needed)"
-	@echo "  airflow-ui  	- Set up port forwarding to access Airflow UI"
 	@echo "  push-image    - Push custom Airflow Docker image"
 	@echo "  logs          - Show logs for Airflow components"
 	@echo "  lint		   - Check code quality"
@@ -74,12 +73,6 @@ deploy:
 	else \
 		make install; \
 	fi
-
-# Port forward to access Airflow UI
-.PHONY: airflow-ui
-airflow-ui:
-	@echo "Setting up port forwarding to access Airflow UI at http://localhost:8080..."
-	kubectl port-forward svc/$(RELEASE_NAME)-webserver 8080:8080 -n $(NAMESPACE)
 
 # Build custom Docker image
 .PHONY: push-image

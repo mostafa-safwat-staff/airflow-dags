@@ -12,6 +12,7 @@ A comprehensive project for managing Apache Airflow deployments on Kubernetes (A
 ├── scripts/               # Helper scripts
 ├── plugins/               # Custom Airflow plugins
 ├── docker/                # Custom Dockerfile(s)
+├── tests/                 # Integration Test
 └── Makefile               # Command management
 ```
 
@@ -58,12 +59,17 @@ Using the deploy script:
 ./scripts/deploy.sh --env dev --action deploy
 ```
 
-### 4. Access Airflow UI
+### 🔗 Airflow Environment Access
 
-```bash
-make airflow-ui
-```
-Then open http://localhost:8080 in your browser
+The following URLs provide access to the Apache Airflow web interface for each environment:
+
+| Environment   | URL                                       |
+|---------------|-------------------------------------------|
+| Production    | https://airflow.moustafa-kotb.com         |
+| Staging	    | https://airflow-staging.moustafa-kotb.com |
+| Development   | https://airflow-dev.moustafa-kotb.com     |
+
+💡 Note: All environments require VPN access and SSO authentication. Contact Moustafa for access credentials if needed.
 
 ## Common Tasks
 
@@ -86,4 +92,10 @@ make push-image
 3. Deploy the changes:
 ```bash
 make upgrade
+```
+
+### Run test
+
+```sh
+make test
 ```

@@ -11,7 +11,7 @@ DAG_PATH = os.path.join(
 
 DAG_FILES = glob.glob(DAG_PATH, recursive=True)
 
-@pytest.mark.parametrize("dag_file", DAG_FILES)
+@pytest.mark.parametrize("dag_file", DAG_FILES) # Runs the test for every found Python file
 def test_dag_integrity(dag_file):
     module_name, _ = os.path.splitext(dag_file)
     module_path = os.path.join(DAG_PATH, dag_file)
